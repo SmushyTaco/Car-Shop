@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/dark-mode.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>InHouse Part Form</title>
+</head>
+<body>
+<div class="container">
+    <h1>In House Part Detail</h1>
+    <form th:action="@{/show-form-add-in-part}" th:object="${inHousePart}" th:method="${inHousePart.id != 0 ? 'PATCH' : 'POST'}">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group mb-4">
+            <label for="name">Name:</label>
+            <input type="text" th:field="*{name}" placeholder="Name" class="form-control" id="name"/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Name Error</div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="price">Price:</label>
+            <input type="text" th:field="*{price}" placeholder="Price" class="form-control" id="price"/>
+            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error">Price Error</div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="inv">Inventory:</label>
+            <input type="text" th:field="*{inv}" placeholder="Inventory" class="form-control" id="inv"/>
+            <div th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}" class="error">Inventory Error</div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="min-inv">Minimum Inventory:</label>
+            <input type="text" th:field="*{minInv}" placeholder="Minimum Inventory" class="form-control" id="min-inv"/>
+            <div th:if="${#fields.hasErrors('minInv')}" th:errors="*{minInv}" class="error">Minimum Inventory Error</div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="max-inv">Maximum Inventory:</label>
+            <input type="text" th:field="*{maxInv}" placeholder="Maximum Inventory" class="form-control" id="max-inv"/>
+            <div th:if="${#fields.hasErrors('maxInv')}" th:errors="*{maxInv}" class="error">Maximum Inventory Error</div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="part-id">Part ID:</label>
+            <input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control" id="part-id"/>
+            <div th:if="${#fields.hasErrors('partId')}" th:errors="*{partId}" class="error">Part ID Error</div>
+        </div>
+        <div th:if="${#fields.hasAnyErrors()}">
+            <ul class="errors">
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+            </ul>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <a href="/main-screen" class="btn btn-primary">Return to Main Screen</a>
+</div>
+</body>
+</html>
