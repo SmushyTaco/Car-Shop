@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/js/filter.js"></script>
+    <script src="/js/buy-product-alert.js"></script>
+    <script src="/js/dark-mode.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Car Shop</title>
+</head>
+<body>
+<div class="container">
+    <h1>Car Shop</h1>
+    <hr>
+    <h2>Outsourced Parts</h2>
+    <form id="outsourced-part-form" th:action="@{/main-screen}" method="GET">
+        <label for="outsourced-part-keyword">Filter:</label>
+        <input type="text" name="outsourced-part-keyword" id="outsourced-part-keyword" size="50" required/>
+        <input type="button" id="outsourced-part-search" value="Search" class="btn btn-info mx-2"/>
+        <button type="button" id="clear-outsourced-part-search" class="btn btn-secondary">Clear</button>
+    </form>
+    <br>
+    <a th:href="@{/show-form-add-out-part}" class="btn btn-primary btn-sm mb-3">Add Outsourced Part</a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Inventory</th>
+            <th>Minimum Inventory</th>
+            <th>Maximum Inventory</th>
+            <th>Company Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempPart : ${outsourcedParts}">
+            <td th:text="${tempPart.name}">Part Name</td>
+            <td th:text="${tempPart.price}">Part Price</td>
+            <td th:text="${tempPart.inv}">Part Inventory</td>
+            <td th:text="${tempPart.minInv}">Part Minimum Inventory</td>
+            <td th:text="${tempPart.maxInv}">Part Maximum Inventory</td>
+            <td th:text="${tempPart.companyName}">Company Name</td>
+            <td>
+                <a th:if="${unassociatedParts[tempPart.id]}" th:href="@{/show-outsourced-part-form-for-update(part-id=${tempPart.id})}" class="btn btn-primary btn-sm">Update</a>
+                <form th:if="${unassociatedParts[tempPart.id]}" th:action="@{/delete-part(part-id=${tempPart.id})}" th:method="DELETE" class="d-inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>In House Parts</h2>
+    <form id="in-house-part-form" th:action="@{/main-screen}" method="GET">
+        <label for="in-house-part-keyword">Filter:</label>
+        <input type="text" name="in-house-part-keyword" id="in-house-part-keyword" size="50" required/>
+        <input type="button" id="in-house-part-search" value="Search" class="btn btn-info mx-2"/>
+        <button type="button" id="clear-in-house-part-search" class="btn btn-secondary">Clear</button>
+    </form>
+    <br>
+    <a th:href="@{/show-form-add-in-part}" class="btn btn-primary btn-sm mb-3">Add In House Part</a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Inventory</th>
+            <th>Minimum Inventory</th>
+            <th>Maximum Inventory</th>
+            <th>Part ID</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempPart : ${inHouseParts}">
+            <td th:text="${tempPart.name}">Part Name</td>
+            <td th:text="${tempPart.price}">Part Price</td>
+            <td th:text="${tempPart.inv}">Part Inventory</td>
+            <td th:text="${tempPart.minInv}">Part Minimum Inventory</td>
+            <td th:text="${tempPart.maxInv}">Part Maximum Inventory</td>
+            <td th:text="${tempPart.partId}">Company Name</td>
+            <td>
+                <a th:if="${unassociatedParts[tempPart.id]}" th:href="@{/show-in-house-part-form-for-update(part-id=${tempPart.id})}" class="btn btn-primary btn-sm">Update</a>
+                <form th:if="${unassociatedParts[tempPart.id]}" th:action="@{/delete-part(part-id=${tempPart.id})}" th:method="DELETE" class="d-inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>Products</h2>
+    <form id="product-form" th:action="@{/main-screen}" method="GET">
+        <label for="product-keyword">Filter:</label>
+        <input type="text" name="productKeyword" id="product-keyword" size="50" required />
+        <input type="button" id="product-search" value="Search" class="btn btn-info mx-2"/>
+        <button type="button" id="clear-product-search" class="btn btn-secondary">Clear</button>
+    </form>
+    <br>
+    <a th:href="@{/add-product}" class="btn btn-primary btn-sm mb-3">Add Product</a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Inventory</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempProduct : ${products}">
+            <td th:text="${tempProduct.name}">Product Name</td>
+            <td th:text="${tempProduct.price}">Product Price</td>
+            <td th:text="${tempProduct.inv}">Product Inventory</td>
+            <td>
+                <a th:href="@{/update-product(product-id=${tempProduct.id})}" class="btn btn-primary btn-sm">Update</a>
+                <form th:action="@{/delete-product(product-id=${tempProduct.id})}" th:method="DELETE" class="d-inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                <form th:if="${tempProduct.inv > 0}" th:action="@{/buy-product(product-id=${tempProduct.id})}" th:method="PATCH" class="d-inline">
+                    <button type="submit" class="btn btn-success btn-sm buy-product-button">Buy Now</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/about" class="btn btn-primary">About</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/js/dark-mode.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Product Form</title>
+</head>
+<body>
+<div class="container">
+    <h1>Product Detail</h1>
+    <form th:action="@{/update-product}" th:object="${product}" th:method="PATCH">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group mb-4">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" placeholder="Name" class="form-control"/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Name Error</div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="price">Price:</label>
+            <input type="text" id="price" th:field="*{price}" placeholder="Price" class="form-control"/>
+            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error">Price Error</div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="inv">Inventory:</label>
+            <input type="text" id="inv" th:field="*{inv}" placeholder="Inventory" class="form-control"/>
+            <div th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}" class="error">Inventory Error</div>
+        </div>
+        <div th:if="${#fields.hasAnyErrors()}">
+            <ul class="errors">
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+            </ul>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div th:if="!${#lists.isEmpty(availableParts)}">
+        <h2>Available Parts</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Inventory</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tempPart : ${availableParts}">
+                <td th:text="${tempPart.name}">Part Name</td>
+                <td th:text="${tempPart.price}">Part Price</td>
+                <td th:text="${tempPart.inv}">Part Inventory</td>
+                <td>
+                    <form th:if="${partPriceValidity[tempPart.getId()]}" th:action="@{/associate-part(part-id=${tempPart.id}, product-id=${product.getId()})}" th:method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="!${#lists.isEmpty(associatedParts)}">
+        <h2>Associated Parts</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Inventory</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tempPart : ${associatedParts}">
+                <td th:text="${tempPart.name}">Part Name</td>
+                <td th:text="${tempPart.price}">Part Price</td>
+                <td th:text="${tempPart.inv}">Part Inventory</td>
+                <td>
+                    <form th:action="@{/remove-part(part-id=${tempPart.id}, product-id=${product.getId()})}" th:method="DELETE" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="/main-screen" class="btn btn-primary">Return to Main Screen</a>
+</div>
+</body>
+</html>

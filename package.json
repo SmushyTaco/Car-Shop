@@ -1,0 +1,11 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "A Spring Boot application that uses TypeScript",
+  "scripts": {
+    "tsc": "tsc -p ."
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

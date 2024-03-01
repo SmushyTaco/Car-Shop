@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "strict": true,
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "outDir": "src/main/resources/static/js",
+    "rootDir": "src/main/resources/static/ts",
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/main/resources/static/ts/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

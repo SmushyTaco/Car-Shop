@@ -1,0 +1,99 @@
+package com.smushytaco.car_shop.domain;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.util.HashSet;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+class ProductTest {
+    Product product;
+    @BeforeEach
+    public void setUp() { product = new Product(); }
+    @Test
+    void getId() {
+        Long idValue = 4L;
+        product.setId(idValue);
+        assertEquals(product.getId(), idValue);
+    }
+    @Test
+    void setId() {
+        Long idValue = 4L;
+        product.setId(idValue);
+        assertEquals(product.getId(), idValue);
+    }
+    @Test
+    void getName() {
+        String name = "test product";
+        product.setName(name);
+        assertEquals(name, product.getName());
+    }
+    @Test
+    void setName() {
+        String name = "test product";
+        product.setName(name);
+        assertEquals(name, product.getName());
+    }
+    @Test
+    void getPrice() {
+        double price = 1.0;
+        product.setPrice(price);
+        assertEquals(price, product.getPrice());
+    }
+    @Test
+    void setPrice() {
+        double price = 1.0;
+        product.setPrice(price);
+        assertEquals(price, product.getPrice());
+    }
+    @Test
+    void getInv() {
+        int inv = 5;
+        product.setInv(inv);
+        assertEquals(inv, product.getInv());
+    }
+    @Test
+    void setInv() {
+        int inv = 5;
+        product.setInv(inv);
+        assertEquals(inv, product.getInv());
+    }
+    @Test
+    void getParts() {
+        Part partOne = new OutsourcedPart();
+        Part partTwo = new InHousePart();
+        Set<Part> myParts = new HashSet<>();
+        myParts.add(partOne);
+        myParts.add(partTwo);
+        product.setParts(myParts);
+        assertEquals(myParts, product.getParts());
+    }
+    @Test
+    void setParts() {
+        Part partOne = new OutsourcedPart();
+        Part partTwo = new InHousePart();
+        Set<Part> myParts = new HashSet<>();
+        myParts.add(partOne);
+        myParts.add(partTwo);
+        product.setParts(myParts);
+        assertEquals(myParts, product.getParts());
+    }
+    @Test
+    void testToString() {
+        String name = "test product";
+        product.setName(name);
+        assertEquals(name, product.toString());
+    }
+    @Test
+    void testEquals() {
+        product.setId(1L);
+        Product newProduct = new Product();
+        newProduct.setId(1L);
+        assertEquals(product, newProduct);
+    }
+    @Test
+    void testHashCode() {
+        product.setId(1L);
+        Product newProduct = new Product();
+        newProduct.setId(1L);
+        assertEquals(product.hashCode(), newProduct.hashCode());
+    }
+}
