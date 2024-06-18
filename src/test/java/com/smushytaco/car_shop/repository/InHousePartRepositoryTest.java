@@ -13,9 +13,9 @@ class InHousePartRepositoryTest {
     void setUp() { inhousePartRepository = mock(InHousePartRepository.class); }
     @Test
     void findAll() {
-        InHousePart part = new InHousePart();
+        InHousePart inHousePart = new InHousePart();
         List<InHousePart> partData = new ArrayList<>();
-        partData.add(part);
+        partData.add(inHousePart);
         when(inhousePartRepository.findAll()).thenReturn(partData);
         assertEquals(1, partData.size());
     }
