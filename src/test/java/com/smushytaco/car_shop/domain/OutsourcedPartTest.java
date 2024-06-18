@@ -3,19 +3,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 class OutsourcedPartTest {
-    OutsourcedPart op;
+    OutsourcedPart outsourcedPart;
     @BeforeEach
-    void setUp() { op = new OutsourcedPart(); }
+    void setUp() { outsourcedPart = new OutsourcedPart(); }
     @Test
-    void getCompanyName() {
-        String name = "test company name";
-        op.setCompanyName(name);
-        assertEquals(name, op.getCompanyName());
-    }
-    @Test
-    void setCompanyName() {
-        String name = "test company name";
-        op.setCompanyName(name);
-        assertEquals(name, op.getCompanyName());
+    void companyName() {
+        String companyName = "test company name";
+        outsourcedPart.setCompanyName(companyName);
+        assertEquals(companyName, outsourcedPart.getCompanyName());
     }
 }

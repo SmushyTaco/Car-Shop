@@ -3,19 +3,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 class InHousePartTest {
-    InHousePart ip;
+    InHousePart inHousePart;
     @BeforeEach
-    void setUp() { ip = new InHousePart(); }
+    void setUp() { inHousePart = new InHousePart(); }
     @Test
-    void getPartId() {
-        int idValue = 4;
-        ip.setPartId(idValue);
-        assertEquals(ip.getPartId(), idValue);
-    }
-    @Test
-    void setPartId() {
-        int idValue = 4;
-        ip.setPartId(idValue);
-        assertEquals(ip.getPartId(), idValue);
+    void partId() {
+        int partId = 4;
+        inHousePart.setPartId(partId);
+        assertEquals(inHousePart.getPartId(), partId);
     }
 }
