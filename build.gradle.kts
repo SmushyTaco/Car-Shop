@@ -7,7 +7,7 @@ plugins {
     id("io.freefair.lombok")
     id("com.github.node-gradle.node")
 }
-base.archivesName.set(property("name") as String)
+base.archivesName = property("name") as String
 group = property("group") as String
 version = property("version") as String
 repositories { mavenCentral() }
@@ -38,7 +38,7 @@ tasks {
     }
     val javaVersion = JavaVersion.toVersion((property("java_version") as String).toInt())
     java {
-        toolchain { languageVersion.set(JavaLanguageVersion.of(javaVersion.toString())) }
+        toolchain.languageVersion = JavaLanguageVersion.of(javaVersion.toString())
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
     }
@@ -47,7 +47,7 @@ tasks {
         options.encoding = "UTF-8"
         sourceCompatibility = javaVersion.toString()
         targetCompatibility = javaVersion.toString()
-        options.release.set(javaVersion.toString().toInt())
+        options.release = javaVersion.toString().toInt()
     }
     withType<JavaExec>().configureEach { defaultCharacterEncoding = "UTF-8" }
     withType<Javadoc>().configureEach { options.encoding = "UTF-8" }
