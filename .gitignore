@@ -44,3 +44,6 @@ data/
 
 ### Node ###
 node_modules/
+
+### Static Analysis ###
+.PVS-Studio/
