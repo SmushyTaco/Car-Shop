@@ -16,9 +16,9 @@ class PartTest {
     void id() {
         long id = 4L;
         inHousePart.setId(id);
-        assertEquals(inHousePart.getId(), id);
+        assertEquals(id, inHousePart.getId());
         outsourcedPart.setId(id);
-        assertEquals(outsourcedPart.getId(), id);
+        assertEquals(id, outsourcedPart.getId());
     }
     @Test
     void name() {
