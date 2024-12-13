@@ -12,7 +12,7 @@ class ProductTest {
     void id() {
         long id = 4L;
         product.setId(id);
-        assertEquals(product.getId(), id);
+        assertEquals(id, product.getId());
     }
     @Test
     void name() {

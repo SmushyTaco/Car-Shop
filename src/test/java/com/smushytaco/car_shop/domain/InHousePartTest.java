@@ -10,6 +10,6 @@ class InHousePartTest {
     void partId() {
         int partId = 4;
         inHousePart.setPartId(partId);
-        assertEquals(inHousePart.getPartId(), partId);
+        assertEquals(partId, inHousePart.getPartId());
     }
 }
