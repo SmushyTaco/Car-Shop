@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductTest {
     Product product;
     @BeforeEach
-    public void setUp() { product = new Product(); }
+    void setUp() { product = new Product(); }
     @Test
     void id() {
         long id = 4L;

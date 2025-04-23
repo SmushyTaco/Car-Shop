@@ -16,6 +16,7 @@ import java.util.Set;
 @Table(name = "products")
 @PriceProductValidator
 @EnoughPartsValidator
+@SuppressWarnings("JpaDataSourceORMInspection")
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
