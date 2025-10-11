@@ -38,6 +38,7 @@ classes/
 
 ### Database ###
 data/
+base/
 
 ### Log ###
 *.log
