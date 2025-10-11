@@ -19,6 +19,7 @@ base.archivesName = name.get()
 group = projectGroup.get()
 version = projectVersion.get()
 repositories { mavenCentral() }
+val mockitoAgent by configurations.creating
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -27,16 +28,23 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
     implementation("ch.vorburger.mariaDB4j:mariaDB4j-springboot:${mariadb4jSpringBootVersion.get()}")
     implementation("org.mariadb.jdbc:mariadb-java-client:${mariadb4jDriverVersion.get()}")
+    implementation("org.aspectj:aspectjrt")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.projectlombok:lombok")
-    runtimeOnly("org.aspectj:aspectjrt")
+    mockitoAgent("org.mockito:mockito-core") { isTransitive = false }
 }
 configurations { all { exclude("org.springframework.boot", "spring-boot-starter-logging") } }
 node {
     download = true
     npmVersion = projectNpmVersion.get()
     version = nodejsVersion.get()
+}
+abstract class MockitoAgentArgs @Inject constructor(objects: ObjectFactory) : CommandLineArgumentProvider {
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    val agentFiles: ConfigurableFileCollection = objects.fileCollection()
+    override fun asArguments(): Iterable<String> = agentFiles.files.map { "-javaagent:${it.absolutePath}" }
 }
 tasks {
     val installTypeScript by registering(NpmTask::class) { args = listOf("install", "typescript", "--save-dev") }
@@ -59,6 +67,8 @@ tasks {
     withType<JavaExec>().configureEach { defaultCharacterEncoding = "UTF-8" }
     withType<Javadoc>().configureEach { options.encoding = "UTF-8" }
     withType<Test>().configureEach {
+        val provider = objects.newInstance(MockitoAgentArgs::class.java).apply { agentFiles.from(mockitoAgent) }
+        jvmArgumentProviders.add(provider)
         defaultCharacterEncoding = "UTF-8"
         useJUnitPlatform()
     }

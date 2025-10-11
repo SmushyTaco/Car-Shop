@@ -4,8 +4,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".buy-product-button").forEach((button) => {
+        const buttons = document.querySelectorAll(".buy-product-button");
+        for (const button of buttons) {
             button.addEventListener("click", buyProductAlert);
-        });
+        }
     });
 }

@@ -14,29 +14,29 @@
 
     function searchOutsourcedParts(): void {
         saveSearchValues();
-        const queryParams = new URLSearchParams(window.location.search);
+        const queryParams = new URLSearchParams(globalThis.location.search);
         const productKeyword = queryParams.get("product-keyword") || "";
         const inHousePartKeyword = queryParams.get("in-house-part-keyword") || "";
         const outsourcedPartKeyword = (document.getElementById("outsourced-part-keyword") as HTMLInputElement).value || "";
-        window.location.href = `/main-screen?outsourced-part-keyword=${encodeURIComponent(outsourcedPartKeyword)}&in-house-part-keyword=${encodeURIComponent(inHousePartKeyword)}&product-keyword=${encodeURIComponent(productKeyword)}`;
+        globalThis.location.href = `/main-screen?outsourced-part-keyword=${encodeURIComponent(outsourcedPartKeyword)}&in-house-part-keyword=${encodeURIComponent(inHousePartKeyword)}&product-keyword=${encodeURIComponent(productKeyword)}`;
     }
 
     function searchInHouseParts(): void {
         saveSearchValues();
-        const queryParams = new URLSearchParams(window.location.search);
+        const queryParams = new URLSearchParams(globalThis.location.search);
         const productKeyword = queryParams.get("product-keyword") || "";
         const outsourcedPartKeyword = queryParams.get("outsourced-part-keyword") || "";
         const inHousePartKeyword = (document.getElementById("in-house-part-keyword") as HTMLInputElement).value || "";
-        window.location.href = `/main-screen?outsourced-part-keyword=${encodeURIComponent(outsourcedPartKeyword)}&in-house-part-keyword=${encodeURIComponent(inHousePartKeyword)}&product-keyword=${encodeURIComponent(productKeyword)}`;
+        globalThis.location.href = `/main-screen?outsourced-part-keyword=${encodeURIComponent(outsourcedPartKeyword)}&in-house-part-keyword=${encodeURIComponent(inHousePartKeyword)}&product-keyword=${encodeURIComponent(productKeyword)}`;
     }
 
     function searchProducts(): void {
         saveSearchValues();
-        const queryParams = new URLSearchParams(window.location.search);
+        const queryParams = new URLSearchParams(globalThis.location.search);
         const outsourcedPartKeyword = queryParams.get("outsourced-part-keyword") || "";
         const inHousePartKeyword = queryParams.get("in-house-part-keyword") || "";
         const productKeyword = (document.getElementById("product-keyword") as HTMLInputElement).value || "";
-        window.location.href = `/main-screen?outsourced-part-keyword=${encodeURIComponent(outsourcedPartKeyword)}&in-house-part-keyword=${encodeURIComponent(inHousePartKeyword)}&product-keyword=${encodeURIComponent(productKeyword)}`;
+        globalThis.location.href = `/main-screen?outsourced-part-keyword=${encodeURIComponent(outsourcedPartKeyword)}&in-house-part-keyword=${encodeURIComponent(inHousePartKeyword)}&product-keyword=${encodeURIComponent(productKeyword)}`;
     }
 
     function clearSearchOutsourcedParts(): void {
