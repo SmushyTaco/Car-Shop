@@ -1,4 +1,5 @@
 package com.smushytaco.car_shop.domain;
+
 import com.smushytaco.car_shop.validator.EnoughPartsValidator;
 import com.smushytaco.car_shop.validator.PriceProductValidator;
 import jakarta.persistence.*;
@@ -6,10 +7,12 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 @Setter
 @Getter
 @Entity

@@ -1,19 +1,48 @@
 package com.smushytaco.car_shop.configuration;
-import ch.vorburger.exec.ManagedProcessException;
-import ch.vorburger.mariadb4j.springframework.MariaDB4jSpringService;
+
+import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
+import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 @Configuration
 class DatabaseConfiguration {
+    @Bean(destroyMethod = "close")
+    public EmbeddedPostgres embeddedPostgres(
+            @Value("${app.postgres.port:0}") final int port,
+            @Value("${app.postgres.dataDir:}") final String dataDir,
+            @Value("${app.postgres.cleanDataDir:true}") final boolean cleanDataDir
+    ) throws IOException {
+        final EmbeddedPostgres.Builder builder = EmbeddedPostgres.builder().setCleanDataDirectory(cleanDataDir);
+        if (port > 0) builder.setPort(port);
+        if (!dataDir.isBlank()) builder.setDataDirectory(dataDir);
+        return builder.start();
+    }
     @Bean
-    public MariaDB4jSpringService mariaDB4jSpringService() { return new MariaDB4jSpringService(); }
-    @Bean
-    public DataSource dataSource(final MariaDB4jSpringService mariaDB4jSpringService, @Value("${app.mariaDB4j.databaseName}") final String databaseName, @Value("${spring.datasource.username}") final String datasourceUsername, @Value("${spring.datasource.password}") final String datasourcePassword, @Value("${spring.datasource.driver-class-name}") final String datasourceDriver, @Value("${spring.datasource.url}") final String datasourceUrl) throws ManagedProcessException {
-        if (!mariaDB4jSpringService.isRunning()) mariaDB4jSpringService.start();
-        mariaDB4jSpringService.mariaDB4j().createDB(databaseName);
-        return DataSourceBuilder.create().username(datasourceUsername).password(datasourcePassword).url(datasourceUrl + databaseName).driverClassName(datasourceDriver).build();
+    public DataSource dataSource(
+            final EmbeddedPostgres embeddedPostgres,
+            @Value("${app.postgres.databaseName:car-shop}") final String databaseName,
+            @Value("${spring.datasource.username:postgres}") final String user,
+            @Value("${spring.datasource.password:postgres}") final String password
+    ) throws SQLException {
+        try (Connection admin = embeddedPostgres.getPostgresDatabase().getConnection()) {
+            final DSLContext context = DSL.using(admin);
+            if (!context.fetchExists(DSL.selectOne().from("pg_database").where(DSL.field("datname").eq(databaseName))))
+                context.query("create database {0}", DSL.name(databaseName)).execute();
+        }
+        final PGSimpleDataSource ds = new PGSimpleDataSource();
+        ds.setPortNumbers(new int[]{embeddedPostgres.getPort()});
+        ds.setDatabaseName(databaseName);
+        ds.setUser(user);
+        ds.setPassword(password);
+        return ds;
     }
 }

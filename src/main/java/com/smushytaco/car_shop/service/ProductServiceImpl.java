@@ -1,14 +1,17 @@
 package com.smushytaco.car_shop.service;
+
 import com.smushytaco.car_shop.domain.Part;
 import com.smushytaco.car_shop.domain.Product;
 import com.smushytaco.car_shop.repository.PartRepository;
 import com.smushytaco.car_shop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 @Service
 public class ProductServiceImpl implements ProductService {
     private Set<Part> getPartsInternal(final long id) {

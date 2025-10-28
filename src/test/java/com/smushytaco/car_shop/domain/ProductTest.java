@@ -1,9 +1,13 @@
 package com.smushytaco.car_shop.domain;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.HashSet;
 import java.util.Set;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class ProductTest {
     Product product;
     @BeforeEach

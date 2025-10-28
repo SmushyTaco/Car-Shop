@@ -1,7 +1,10 @@
 package com.smushytaco.car_shop.controller;
+
 import com.smushytaco.car_shop.service.PartService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 @Controller
 public class PartController {
     private final PartService partService;

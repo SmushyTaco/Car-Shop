@@ -1,4 +1,5 @@
 package com.smushytaco.car_shop.bootstrap;
+
 import com.smushytaco.car_shop.domain.InHousePart;
 import com.smushytaco.car_shop.domain.OutsourcedPart;
 import com.smushytaco.car_shop.domain.Product;
@@ -9,6 +10,7 @@ import com.smushytaco.car_shop.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 @Slf4j
 @Component

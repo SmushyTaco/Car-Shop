@@ -1,6 +1,5 @@
-// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 package com.smushytaco.car_shop.domain;
+
 import com.smushytaco.car_shop.validator.DeleteOrUpdatePartValidator;
 import com.smushytaco.car_shop.validator.MaximumInventoryPartValidator;
 import com.smushytaco.car_shop.validator.MinimumInventoryPartValidator;
@@ -10,10 +9,12 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 @Setter
 @Getter
 @Entity

@@ -1,9 +1,11 @@
 package com.smushytaco.car_shop.service;
+
 import com.smushytaco.car_shop.domain.Part;
 import com.smushytaco.car_shop.domain.Product;
 
 import java.util.List;
 import java.util.Set;
+
 public interface ProductService {
     List<Product> findAll();
     Product findById(final long id);
