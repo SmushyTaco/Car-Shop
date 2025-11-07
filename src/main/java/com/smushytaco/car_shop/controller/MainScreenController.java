@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class MainScreenController {
+public final class MainScreenController {
     private final OutsourcedPartService outsourcedPartService;
     private final InHousePartService inHousePartService;
     private final PartService partService;
@@ -31,15 +31,15 @@ public class MainScreenController {
     }
     @GetMapping("/main-screen")
     public String listPartsAndProducts(final Model model, @RequestParam(value = "outsourced-part-keyword", required = false) final String outsourcedPartKeyword, @RequestParam(value = "in-house-part-keyword", required = false) final String inHousePartKeyword, @RequestParam(value = "product-keyword", required = false) final String productKeyword) {
-        List<OutsourcedPart> outsourcedPartList = outsourcedPartService.listAll(outsourcedPartKeyword);
+        final List<OutsourcedPart> outsourcedPartList = outsourcedPartService.listAll(outsourcedPartKeyword);
         model.addAttribute("outsourcedParts", outsourcedPartList);
-        List<InHousePart> inHousePartList = inHousePartService.listAll(inHousePartKeyword);
+        final List<InHousePart> inHousePartList = inHousePartService.listAll(inHousePartKeyword);
         model.addAttribute("inHouseParts", inHousePartList);
-        List<Product> productList = productService.listAll(productKeyword);
+        final List<Product> productList = productService.listAll(productKeyword);
         model.addAttribute("products", productList);
-        List<Part> parts = partService.findAll();
-        Map<Long, Boolean> unassociatedParts = new HashMap<>();
-        for (Part part : parts) unassociatedParts.put(part.getId(), partService.getProducts(part.getId()).isEmpty());
+        final List<Part> parts = partService.findAll();
+        final Map<Long, Boolean> unassociatedParts = new HashMap<>();
+        for (final Part part : parts) unassociatedParts.put(part.getId(), partService.getProducts(part.getId()).isEmpty());
         model.addAttribute("unassociatedParts", unassociatedParts);
         return "main-screen";
     }

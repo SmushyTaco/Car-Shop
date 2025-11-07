@@ -16,6 +16,7 @@ val aspectjrtVersion = providers.gradleProperty("aspectjrt_version")
 val embeddedPostgresVersion = providers.gradleProperty("embedded_postgres_version")
 val postgresqlVersion = providers.gradleProperty("postgresql_version")
 val postgresqlDriverVersion = providers.gradleProperty("postgresql_driver_version")
+val jbossThreadsVersion = providers.gradleProperty("jboss_threads_version")
 val nodejsVersion = providers.gradleProperty("nodejs_version")
 val javaVersion = providers.gradleProperty("java_version")
 base.archivesName = projectName.get()
@@ -29,17 +30,24 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
     implementation("io.zonky.test:embedded-postgres:${embeddedPostgresVersion.get()}")
     implementation(enforcedPlatform("io.zonky.test.postgres:embedded-postgres-binaries-bom:${postgresqlVersion.get()}"))
     implementation("org.postgresql:postgresql:${postgresqlDriverVersion.get()}")
+    implementation("org.jboss.threads:jboss-threads:${jbossThreadsVersion.get()}")
     implementation("org.aspectj:aspectjrt:${aspectjrtVersion.get()}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.projectlombok:lombok:${lombokVersion.get()}")
     mockitoAgent("org.mockito:mockito-core") { isTransitive = false }
 }
-configurations { all { exclude("org.springframework.boot", "spring-boot-starter-logging") } }
+configurations {
+    all {
+        exclude("org.springframework.boot", "spring-boot-starter-logging")
+        exclude("org.springframework.boot", "spring-boot-starter-tomcat")
+    }
+}
 node {
     download = true
     npmVersion = projectNpmVersion.get()

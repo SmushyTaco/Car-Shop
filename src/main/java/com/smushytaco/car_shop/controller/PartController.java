@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class PartController {
+public final class PartController {
     private final PartService partService;
     public PartController(final PartService partService) { this.partService = partService; }
     @DeleteMapping("/delete-part")

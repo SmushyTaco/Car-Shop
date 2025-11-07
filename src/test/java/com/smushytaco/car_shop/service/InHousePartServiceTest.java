@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class InHousePartServiceTest {
+final class InHousePartServiceTest {
     InHousePartRepository inhousePartRepository;
     InHousePartService inhousePartService;
     @BeforeEach
@@ -22,8 +22,8 @@ class InHousePartServiceTest {
     }
     @Test
     void findAll() {
-        InHousePart part = new InHousePart();
-        List<InHousePart> partData = new ArrayList<>();
+        final InHousePart part = new InHousePart();
+        final List<InHousePart> partData = new ArrayList<>();
         partData.add(part);
         when(inhousePartRepository.findAll()).thenReturn(partData);
         assertEquals(1, partData.size());

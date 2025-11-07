@@ -43,14 +43,14 @@ public class Product implements Serializable {
         this.inv = inv;
     }
     @Override
-    public boolean equals(final Object o) {
+    public final boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
+        final Product product = (Product) o;
         return id == product.id;
     }
     @Override
-    public int hashCode() { return Objects.hash(id); }
+    public final int hashCode() { return Objects.hash(id); }
     @Override
-    public String toString() { return name; }
+    public final String toString() { return name; }
 }

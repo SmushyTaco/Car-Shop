@@ -8,7 +8,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PartTest {
+final class PartTest {
     Part inHousePart;
     Part outsourcedPart;
     @BeforeEach
@@ -18,7 +18,7 @@ class PartTest {
     }
     @Test
     void id() {
-        long id = 4L;
+        final long id = 4L;
         inHousePart.setId(id);
         assertEquals(id, inHousePart.getId());
         outsourcedPart.setId(id);
@@ -35,7 +35,7 @@ class PartTest {
     }
     @Test
     void price() {
-        double price = 1.0;
+        final double price = 1.0;
         inHousePart.setPrice(price);
         assertEquals(price, inHousePart.getPrice());
         outsourcedPart.setPrice(price);
@@ -43,7 +43,7 @@ class PartTest {
     }
     @Test
     void minInv() {
-        int minInv = 3;
+        final int minInv = 3;
         inHousePart.setMinInv(minInv);
         assertEquals(minInv, inHousePart.getMinInv());
         outsourcedPart.setMinInv(minInv);
@@ -51,7 +51,7 @@ class PartTest {
     }
     @Test
     void maxInv() {
-        int maxInv = 8;
+        final int maxInv = 8;
         inHousePart.setMaxInv(maxInv);
         assertEquals(maxInv, inHousePart.getMaxInv());
         outsourcedPart.setMaxInv(maxInv);
@@ -59,7 +59,7 @@ class PartTest {
     }
     @Test
     void inv() {
-        int inv = 5;
+        final int inv = 5;
         inHousePart.setInv(inv);
         assertEquals(inv, inHousePart.getInv());
         outsourcedPart.setInv(inv);
@@ -67,9 +67,9 @@ class PartTest {
     }
     @Test
     void products() {
-        Product productOne = new Product();
-        Product productTwo = new Product();
-        Set<Product> products = new HashSet<>();
+        final Product productOne = new Product();
+        final Product productTwo = new Product();
+        final Set<Product> products = new HashSet<>();
         products.add(productOne);
         products.add(productTwo);
         inHousePart.setProducts(products);
@@ -89,11 +89,11 @@ class PartTest {
     @Test
     void testEquals() {
         inHousePart.setId(1L);
-        Part inHousePartTwo = new InHousePart();
+        final Part inHousePartTwo = new InHousePart();
         inHousePartTwo.setId(1L);
         assertEquals(inHousePart, inHousePartTwo);
         outsourcedPart.setId(1L);
-        Part outsourcedPartTwo = new OutsourcedPart();
+        final Part outsourcedPartTwo = new OutsourcedPart();
         outsourcedPartTwo.setId(1L);
         assertEquals(outsourcedPart, outsourcedPartTwo);
     }

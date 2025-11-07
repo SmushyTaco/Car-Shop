@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class InHousePartTest {
+final class InHousePartTest {
     InHousePart inHousePart;
     @BeforeEach
     void setUp() { inHousePart = new InHousePart(); }
     @Test
     void partId() {
-        int partId = 4;
+        final int partId = 4;
         inHousePart.setPartId(partId);
         assertEquals(partId, inHousePart.getPartId());
     }

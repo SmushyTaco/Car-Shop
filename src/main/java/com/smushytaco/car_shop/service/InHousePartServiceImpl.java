@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class InHousePartServiceImpl implements InHousePartService {
+public final class InHousePartServiceImpl implements InHousePartService {
     private final InHousePartRepository inHousePartRepository;
     public InHousePartServiceImpl(final InHousePartRepository inHousePartRepository) { this.inHousePartRepository = inHousePartRepository; }
     @Override
@@ -33,7 +33,7 @@ public class InHousePartServiceImpl implements InHousePartService {
     @Override
     @Transactional(readOnly = true)
     public Set<Product> getProducts(final long id) {
-        Optional<InHousePart> inHousePart = inHousePartRepository.findByIdWithProducts(id);
+        final Optional<InHousePart> inHousePart = inHousePartRepository.findByIdWithProducts(id);
         return inHousePart.map(InHousePart::getProducts).orElse(Collections.emptySet());
     }
 }

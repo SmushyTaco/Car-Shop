@@ -13,9 +13,9 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public final class ProductServiceImpl implements ProductService {
     private Set<Part> getPartsInternal(final long id) {
-        Optional<Product> product = productRepository.findByIdWithParts(id);
+        final Optional<Product> product = productRepository.findByIdWithParts(id);
         return product.map(Product::getParts).orElse(Collections.emptySet());
     }
     private Product findByIdInternal(final long id) { return productRepository.findById(id).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + id)); }
@@ -50,8 +50,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void associatePartToProduct(final long productId, final long partId) {
-        Product product = productRepository.findByIdWithParts(productId).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + productId));
-        Part part = partRepository.findByIdWithProducts(partId).orElseThrow(() -> new RuntimeException("Did not find part id - " + partId));
+        final Product product = productRepository.findByIdWithParts(productId).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + productId));
+        final Part part = partRepository.findByIdWithProducts(partId).orElseThrow(() -> new RuntimeException("Did not find part id - " + partId));
         product.getParts().add(part);
         part.getProducts().add(product);
         productRepository.save(product);
@@ -59,8 +59,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void removePartFromProduct(final long productId, final long partId) {
-        Product product = productRepository.findByIdWithParts(productId).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + productId));
-        Part part = partRepository.findByIdWithProducts(partId).orElseThrow(() -> new RuntimeException("Did not find part id - " + partId));
+        final Product product = productRepository.findByIdWithParts(productId).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + productId));
+        final Part part = partRepository.findByIdWithProducts(partId).orElseThrow(() -> new RuntimeException("Did not find part id - " + partId));
         product.getParts().remove(part);
         part.getProducts().remove(product);
         productRepository.save(product);

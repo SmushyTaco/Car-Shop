@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PriceProductValidatorImpl implements ConstraintValidator<PriceProductValidator, Product> {
+public final class PriceProductValidatorImpl implements ConstraintValidator<PriceProductValidator, Product> {
     private final ProductService productService;
     public PriceProductValidatorImpl() { this.productService = null; }
     @Autowired

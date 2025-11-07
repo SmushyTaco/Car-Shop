@@ -15,7 +15,7 @@ import java.util.*;
 
 @Slf4j
 @Controller
-public class ProductController {
+public final class ProductController {
     private final PartService partService;
     private final ProductService productService;
     private static final String REDIRECT_MAIN_SCREEN = "redirect:main-screen";
@@ -26,11 +26,11 @@ public class ProductController {
     private String prepareProductForm(final Model model, final Product product, final boolean addAttribute, final boolean isUpdate) {
         if (addAttribute) model.addAttribute("product", product);
         if (!isUpdate) return "new-product-form";
-        List<Part> availableParts = new ArrayList<>();
-        Set<Part> associatedParts = productService.getParts(product.getId());
-        for (Part part : partService.findAll()) if (!associatedParts.contains(part)) availableParts.add(part);
-        Map<Long, Boolean> partPriceValidity = new HashMap<>();
-        for (Part part : availableParts) partPriceValidity.put(part.getId(), productService.productPriceIsValid(product, part));
+        final List<Part> availableParts = new ArrayList<>();
+        final Set<Part> associatedParts = productService.getParts(product.getId());
+        for (final Part part : partService.findAll()) if (!associatedParts.contains(part)) availableParts.add(part);
+        final Map<Long, Boolean> partPriceValidity = new HashMap<>();
+        for (final Part part : availableParts) partPriceValidity.put(part.getId(), productService.productPriceIsValid(product, part));
         model.addAttribute("partPriceValidity", partPriceValidity);
         model.addAttribute("availableParts", availableParts);
         model.addAttribute("associatedParts", associatedParts);
@@ -53,12 +53,12 @@ public class ProductController {
     @PatchMapping("/update-product")
     public String submitFormForUpdatingProduct(@Valid final Product product, final BindingResult bindingResult, final Model model) {
         if (bindingResult.hasErrors()) return prepareProductForm(model, product, false, true);
-        Product existingProduct = productService.findById(product.getId());
+        final Product existingProduct = productService.findById(product.getId());
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
         if (product.getInv() > existingProduct.getInv()) {
-            Set<Part> parts = productService.getParts(existingProduct.getId());
-            for (Part part : parts) {
+            final Set<Part> parts = productService.getParts(existingProduct.getId());
+            for (final Part part : parts) {
                 part.setInv(part.getInv() - (product.getInv() - existingProduct.getInv()));
                 partService.save(part);
             }
@@ -85,7 +85,7 @@ public class ProductController {
     }
     @PatchMapping("/buy-product")
     public String buyProduct(@RequestParam("product-id") final long id) {
-        Product product = productService.findById(id);
+        final Product product = productService.findById(id);
         product.setInv(product.getInv() - 1);
         productService.save(product);
         return REDIRECT_MAIN_SCREEN;

@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class PartServiceImpl implements PartService {
+public final class PartServiceImpl implements PartService {
     private final PartRepository partRepository;
     public PartServiceImpl(final PartRepository partRepository) { this.partRepository = partRepository; }
     @Override
@@ -30,7 +30,7 @@ public class PartServiceImpl implements PartService {
     @Override
     @Transactional(readOnly = true)
     public Set<Product> getProducts(final long id) {
-        Optional<Part> part = partRepository.findByIdWithProducts(id);
+        final Optional<Part> part = partRepository.findByIdWithProducts(id);
         return part.map(Part::getProducts).orElse(Collections.emptySet());
     }
 }

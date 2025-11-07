@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class OutsourcedPartTest {
+final class OutsourcedPartTest {
     OutsourcedPart outsourcedPart;
     @BeforeEach
     void setUp() { outsourcedPart = new OutsourcedPart(); }
     @Test
     void companyName() {
-        String companyName = "test company name";
+        final String companyName = "test company name";
         outsourcedPart.setCompanyName(companyName);
         assertEquals(companyName, outsourcedPart.getCompanyName());
     }

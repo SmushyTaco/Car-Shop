@@ -33,7 +33,7 @@ class DatabaseConfiguration {
             @Value("${spring.datasource.username:postgres}") final String user,
             @Value("${spring.datasource.password:postgres}") final String password
     ) throws SQLException {
-        try (Connection admin = embeddedPostgres.getPostgresDatabase().getConnection()) {
+        try (final Connection admin = embeddedPostgres.getPostgresDatabase().getConnection()) {
             final DSLContext context = DSL.using(admin);
             if (!context.fetchExists(DSL.selectOne().from("pg_database").where(DSL.field("datname").eq(databaseName))))
                 context.query("create database {0}", DSL.name(databaseName)).execute();

@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class OutsourcedPartServiceImpl implements OutsourcedPartService {
+public final class OutsourcedPartServiceImpl implements OutsourcedPartService {
     private final OutsourcedPartRepository outsourcedPartRepository;
     public OutsourcedPartServiceImpl(final OutsourcedPartRepository outsourcedPartRepository) { this.outsourcedPartRepository = outsourcedPartRepository; }
     @Override
@@ -33,7 +33,7 @@ public class OutsourcedPartServiceImpl implements OutsourcedPartService {
     @Override
     @Transactional(readOnly = true)
     public Set<Product> getProducts(final long id) {
-        Optional<OutsourcedPart> outsourcedPart = outsourcedPartRepository.findByIdWithProducts(id);
+        final Optional<OutsourcedPart> outsourcedPart = outsourcedPartRepository.findByIdWithProducts(id);
         return outsourcedPart.map(OutsourcedPart::getProducts).orElse(Collections.emptySet());
     }
 }

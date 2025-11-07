@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class OutsourcedPartController {
+public final class OutsourcedPartController {
     private static final String OUTSOURCED_PART_FORM = "outsourced-part-form";
     private static final String OUTSOURCED_PART = "outsourcedPart";
     private final OutsourcedPartService outsourcedPartService;

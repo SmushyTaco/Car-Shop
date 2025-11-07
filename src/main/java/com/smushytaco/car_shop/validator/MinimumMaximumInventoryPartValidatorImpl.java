@@ -6,7 +6,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MinimumMaximumInventoryPartValidatorImpl implements ConstraintValidator<MinimumMaximumInventoryPartValidator, Part> {
+public final class MinimumMaximumInventoryPartValidatorImpl implements ConstraintValidator<MinimumMaximumInventoryPartValidator, Part> {
     @Override
     public void initialize(final MinimumMaximumInventoryPartValidator constraintAnnotation) { ConstraintValidator.super.initialize(constraintAnnotation); }
     @Override

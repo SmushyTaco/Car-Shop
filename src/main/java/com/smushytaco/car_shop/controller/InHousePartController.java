@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class InHousePartController {
+public final class InHousePartController {
     private static final String IN_HOUSE_PART_FORM = "in-house-part-form";
     private static final String IN_HOUSE_PART = "inHousePart";
     private final InHousePartService inHousePartService;
-    public InHousePartController(InHousePartService inHousePartService) { this.inHousePartService = inHousePartService; }
+    public InHousePartController(final InHousePartService inHousePartService) { this.inHousePartService = inHousePartService; }
     @GetMapping("/show-in-house-part-form-for-update")
     public String showPartFormForUpdate(@RequestParam("part-id") final long id, final Model model) {
         model.addAttribute(IN_HOUSE_PART, inHousePartService.findById(id));

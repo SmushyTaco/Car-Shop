@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DeleteOrUpdatePartValidatorImpl implements ConstraintValidator<DeleteOrUpdatePartValidator, Part> {
+public final class DeleteOrUpdatePartValidatorImpl implements ConstraintValidator<DeleteOrUpdatePartValidator, Part> {
     private final PartService partService;
     public DeleteOrUpdatePartValidatorImpl() { this.partService = null; }
     @Autowired
