@@ -1,6 +1,6 @@
 package com.smushytaco.car_shop.configuration;
 
-import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
+import com.smushytaco.postgres.embedded.EmbeddedPostgres;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -23,7 +24,7 @@ class DatabaseConfiguration {
     ) throws IOException {
         final EmbeddedPostgres.Builder builder = EmbeddedPostgres.builder().setCleanDataDirectory(cleanDataDir);
         if (port > 0) builder.setPort(port);
-        if (!dataDir.isBlank()) builder.setDataDirectory(dataDir);
+        if (!dataDir.isBlank()) builder.setDataDirectory(Path.of(dataDir));
         return builder.start();
     }
     @Bean

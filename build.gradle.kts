@@ -32,7 +32,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
-    implementation("io.zonky.test:embedded-postgres:${embeddedPostgresVersion.get()}")
+    implementation("com.smushytaco:embedded-postgres:${embeddedPostgresVersion.get()}")
     implementation(enforcedPlatform("io.zonky.test.postgres:embedded-postgres-binaries-bom:${postgresqlVersion.get()}"))
     implementation("org.postgresql:postgresql:${postgresqlDriverVersion.get()}")
     implementation("org.jboss.threads:jboss-threads:${jbossThreadsVersion.get()}")
