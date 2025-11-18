@@ -1,0 +1,65 @@
+[versions]
+##########################################################################
+# Plugins
+# Check this on https://plugins.gradle.org/plugin/io.spring.dependency-management/
+spring-dependency-management = "1.1.7"
+# Check this on https://plugins.gradle.org/plugin/org.springframework.boot/
+spring-boot = "3.5.7"
+# Check this on https://plugins.gradle.org/plugin/io.freefair.aspectj.post-compile-weaving/
+aspectjPlugin = "9.1.0"
+# Check this on https://plugins.gradle.org/plugin/io.freefair.lombok/
+lombokPlugin = "9.1.0"
+# Check this on https://plugins.gradle.org/plugin/com.github.node-gradle.node/
+nodePlugin = "7.1.0"
+##########################################################################
+# Java Configuration
+# The Java version the JDK will be for compiling and running code.
+java = "25"
+# The Java version the JDK will be for running Gradle.
+gradleJava = "25"
+##########################################################################
+# Dependencies
+# Check this on https://www.npmjs.com/package/npm/
+npm = "11.6.2"
+# Check this on https://nodejs.org/en/
+nodejs = "24.11.1"
+# Check this on https://central.sonatype.com/artifact/org.projectlombok/lombok/
+lombok = "1.18.42"
+# Check this on https://central.sonatype.com/artifact/org.aspectj/aspectjrt/
+aspectjrt = "1.9.25"
+# Check this on https://central.sonatype.com/artifact/com.smushytaco/embedded-postgres/
+embeddedPostgres = "3.0.2"
+# Check this on https://central.sonatype.com/artifact/io.zonky.test.postgres/embedded-postgres-binaries-bom/
+postgresql = "18.1.0"
+# Check this on https://central.sonatype.com/artifact/org.postgresql/postgresql/
+postgresqlDriver = "42.7.8"
+# Check this on https://central.sonatype.com/artifact/org.jboss.threads/jboss-threads/
+jbossThreads = "3.9.1"
+##########################################################################
+
+[libraries]
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+aspectjrt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjrt" }
+embeddedPostgres = { group = "com.smushytaco", name = "embedded-postgres", version.ref = "embeddedPostgres" }
+postgresql = { group = "io.zonky.test.postgres", name = "embedded-postgres-binaries-bom", version.ref = "postgresql" }
+postgresqlDriver = { group = "org.postgresql", name = "postgresql", version.ref = "postgresqlDriver" }
+jbossThreads = { group = "org.jboss.threads", name = "jboss-threads", version.ref = "jbossThreads" }
+spring-boot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-boot-starter-jooq = { group = "org.springframework.boot", name = "spring-boot-starter-jooq" }
+spring-boot-starter-thymeleaf = { group = "org.springframework.boot", name = "spring-boot-starter-thymeleaf" }
+spring-boot-starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-undertow = { group = "org.springframework.boot", name = "spring-boot-starter-undertow" }
+spring-boot-starter-log4j2 = { group = "org.springframework.boot", name = "spring-boot-starter-log4j2" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+spring-boot-starter-logging = { group = "org.springframework.boot", name = "spring-boot-starter-logging" }
+spring-boot-starter-tomcat = { group = "org.springframework.boot", name = "spring-boot-starter-tomcat" }
+mockito = { group = "org.mockito", name = "mockito-core" }
+
+[plugins]
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+aspectj = { id = "io.freefair.aspectj.post-compile-weaving", version.ref = "aspectjPlugin" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombokPlugin" }
+node = { id = "com.github.node-gradle.node", version.ref = "nodePlugin" }

@@ -1,16 +1,11 @@
 val name = providers.gradleProperty("name")
 rootProject.name = name.get()
 pluginManagement {
-    val springBootVersion = providers.gradleProperty("spring_boot_version")
-    val springDependencyManagementPluginVersion = providers.gradleProperty("spring_dependency_management_plugin_version")
-    val aspectjPluginVersion = providers.gradleProperty("aspectj_plugin_version")
-    val lombokPluginVersion = providers.gradleProperty("lombok_plugin_version")
-    val nodePluginVersion = providers.gradleProperty("node_plugin_version")
+    val foojayResolverVersion = providers.gradleProperty("foojay_resolver_version")
     plugins {
-        id("org.springframework.boot").version(springBootVersion.get())
-        id("io.spring.dependency-management").version(springDependencyManagementPluginVersion.get())
-        id("io.freefair.aspectj.post-compile-weaving").version(aspectjPluginVersion.get())
-        id("io.freefair.lombok").version(lombokPluginVersion.get())
-        id("com.github.node-gradle.node").version(nodePluginVersion.get())
+        id("org.gradle.toolchains.foojay-resolver-convention").version(foojayResolverVersion)
     }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention")
 }
