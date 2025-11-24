@@ -22,23 +22,18 @@ dependencies {
     implementation(libs.spring.boot.starter.thymeleaf)
     implementation(libs.spring.boot.starter.validation)
     implementation(libs.spring.boot.starter.web)
-    implementation(libs.spring.boot.starter.undertow)
     implementation(libs.spring.boot.starter.log4j2)
     implementation(libs.embeddedPostgres)
     implementation(enforcedPlatform(libs.postgresql))
     implementation(libs.postgresqlDriver)
-    implementation(libs.jbossThreads)
     implementation(libs.aspectjrt)
     testImplementation(libs.spring.boot.starter.test)
     developmentOnly(libs.spring.boot.devtools)
     annotationProcessor(libs.lombok)
     mockitoAgent(libs.mockito) { isTransitive = false }
 }
-configurations {
-    all {
-        libs.spring.boot.starter.logging.get().apply { this@all.exclude(group, name) }
-        libs.spring.boot.starter.tomcat.get().apply { this@all.exclude(group, name) }
-    }
+configurations.configureEach {
+    libs.spring.boot.starter.logging.get().apply { this@configureEach.exclude(group, name) }
 }
 node {
     download = true

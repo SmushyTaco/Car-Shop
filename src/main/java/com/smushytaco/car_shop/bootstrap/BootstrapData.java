@@ -8,11 +8,13 @@ import com.smushytaco.car_shop.service.OutsourcedPartService;
 import com.smushytaco.car_shop.service.PartService;
 import com.smushytaco.car_shop.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NullMarked;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@NullMarked
 @Slf4j
 @Component
 public final class BootstrapData implements CommandLineRunner {
