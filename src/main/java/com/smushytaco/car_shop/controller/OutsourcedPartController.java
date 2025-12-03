@@ -31,7 +31,7 @@ public final class OutsourcedPartController {
     public String submitForm(@Valid final OutsourcedPart outsourcedPart, final BindingResult bindingResult, final Model model) {
         model.addAttribute(OUTSOURCED_PART, outsourcedPart);
         if (bindingResult.hasErrors()) return OUTSOURCED_PART_FORM;
-        outsourcedPart.setProducts(outsourcedPartService.getProducts(outsourcedPart.getId()));
+        outsourcedPart.products = outsourcedPartService.getProducts(outsourcedPart.id);
         outsourcedPartService.save(outsourcedPart);
         return "redirect:main-screen";
     }

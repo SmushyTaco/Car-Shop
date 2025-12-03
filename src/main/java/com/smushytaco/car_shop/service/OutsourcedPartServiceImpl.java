@@ -34,6 +34,6 @@ public final class OutsourcedPartServiceImpl implements OutsourcedPartService {
     @Transactional(readOnly = true)
     public Set<Product> getProducts(final long id) {
         final Optional<OutsourcedPart> outsourcedPart = outsourcedPartRepository.findByIdWithProducts(id);
-        return outsourcedPart.map(OutsourcedPart::getProducts).orElse(Collections.emptySet());
+        return outsourcedPart.map(part -> part.products).orElse(Collections.emptySet());
     }
 }

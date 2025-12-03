@@ -39,7 +39,7 @@ public final class MainScreenController {
         model.addAttribute("products", productList);
         final List<Part> parts = partService.findAll();
         final Map<Long, Boolean> unassociatedParts = new HashMap<>();
-        for (final Part part : parts) unassociatedParts.put(part.getId(), partService.getProducts(part.getId()).isEmpty());
+        for (final Part part : parts) unassociatedParts.put(part.id, partService.getProducts(part.id).isEmpty());
         model.addAttribute("unassociatedParts", unassociatedParts);
         return "main-screen";
     }

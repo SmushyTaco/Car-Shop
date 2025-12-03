@@ -19,51 +19,51 @@ final class PartTest {
     @Test
     void id() {
         final long id = 4L;
-        inHousePart.setId(id);
-        assertEquals(id, inHousePart.getId());
-        outsourcedPart.setId(id);
-        assertEquals(id, outsourcedPart.getId());
+        inHousePart.id = id;
+        assertEquals(id, inHousePart.id);
+        outsourcedPart.id = id;
+        assertEquals(id, outsourcedPart.id);
     }
     @Test
     void name() {
         String name = "test in house part";
-        inHousePart.setName(name);
-        assertEquals(name, inHousePart.getName());
+        inHousePart.name = name;
+        assertEquals(name, inHousePart.name);
         name = "test outsourced part";
-        outsourcedPart.setName(name);
-        assertEquals(name, outsourcedPart.getName());
+        outsourcedPart.name = name;
+        assertEquals(name, outsourcedPart.name);
     }
     @Test
     void price() {
         final double price = 1.0;
-        inHousePart.setPrice(price);
-        assertEquals(price, inHousePart.getPrice());
-        outsourcedPart.setPrice(price);
-        assertEquals(price, outsourcedPart.getPrice());
+        inHousePart.price = price;
+        assertEquals(price, inHousePart.price);
+        outsourcedPart.price = price;
+        assertEquals(price, outsourcedPart.price);
     }
     @Test
     void minInv() {
         final int minInv = 3;
-        inHousePart.setMinInv(minInv);
-        assertEquals(minInv, inHousePart.getMinInv());
-        outsourcedPart.setMinInv(minInv);
-        assertEquals(minInv, outsourcedPart.getMinInv());
+        inHousePart.minInv = minInv;
+        assertEquals(minInv, inHousePart.minInv);
+        outsourcedPart.minInv = minInv;
+        assertEquals(minInv, outsourcedPart.minInv);
     }
     @Test
     void maxInv() {
         final int maxInv = 8;
-        inHousePart.setMaxInv(maxInv);
-        assertEquals(maxInv, inHousePart.getMaxInv());
-        outsourcedPart.setMaxInv(maxInv);
-        assertEquals(maxInv, outsourcedPart.getMaxInv());
+        inHousePart.maxInv = maxInv;
+        assertEquals(maxInv, inHousePart.maxInv);
+        outsourcedPart.maxInv = maxInv;
+        assertEquals(maxInv, outsourcedPart.maxInv);
     }
     @Test
     void inv() {
         final int inv = 5;
-        inHousePart.setInv(inv);
-        assertEquals(inv, inHousePart.getInv());
-        outsourcedPart.setInv(inv);
-        assertEquals(inv, outsourcedPart.getInv());
+        inHousePart.inv = inv;
+        assertEquals(inv, inHousePart.inv);
+        outsourcedPart.inv = inv;
+        assertEquals(inv, outsourcedPart.inv);
     }
     @Test
     void products() {
@@ -72,35 +72,37 @@ final class PartTest {
         final Set<Product> products = new HashSet<>();
         products.add(productOne);
         products.add(productTwo);
-        inHousePart.setProducts(products);
-        assertEquals(products, inHousePart.getProducts());
-        outsourcedPart.setProducts(products);
-        assertEquals(products, outsourcedPart.getProducts());
+        inHousePart.products = products;
+        assertEquals(products, inHousePart.products);
+        outsourcedPart.products = products;
+        assertEquals(products, outsourcedPart.products);
     }
     @Test
     void testToString() {
         String name = "test in house part";
-        inHousePart.setName(name);
+        inHousePart.name = name;
         assertEquals(name, inHousePart.toString());
         name = "test outsourced part";
-        outsourcedPart.setName(name);
+        outsourcedPart.name = name;
         assertEquals(name, outsourcedPart.toString());
     }
     @Test
     void testEquals() {
-        inHousePart.setId(1L);
+        final long id = 1L;
+        inHousePart.id = id;
         final Part inHousePartTwo = new InHousePart();
-        inHousePartTwo.setId(1L);
+        inHousePartTwo.id = id;
         assertEquals(inHousePart, inHousePartTwo);
-        outsourcedPart.setId(1L);
+        outsourcedPart.id = id;
         final Part outsourcedPartTwo = new OutsourcedPart();
-        outsourcedPartTwo.setId(1L);
+        outsourcedPartTwo.id = id;
         assertEquals(outsourcedPart, outsourcedPartTwo);
     }
     @Test
     void testHashCode() {
-        inHousePart.setId(1L);
-        outsourcedPart.setId(1L);
+        final long id = 1L;
+        inHousePart.id = id;
+        outsourcedPart.id = id;
         assertEquals(inHousePart.hashCode(), outsourcedPart.hashCode());
     }
 }

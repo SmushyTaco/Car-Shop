@@ -51,7 +51,7 @@
                 <td th:text="${tempPart.price}">Part Price</td>
                 <td th:text="${tempPart.inv}">Part Inventory</td>
                 <td>
-                    <form th:if="${partPriceValidity[tempPart.getId()]}" th:action="@{/associate-part(part-id=${tempPart.id}, product-id=${product.getId()})}" th:method="POST" class="d-inline">
+                    <form th:if="${partPriceValidity[tempPart.id]}" th:action="@{/associate-part(part-id=${tempPart.id}, product-id=${product.id})}" th:method="POST" class="d-inline">
                         <button type="submit" class="btn btn-primary btn-sm">Add</button>
                     </form>
                 </td>
@@ -76,7 +76,7 @@
                 <td th:text="${tempPart.price}">Part Price</td>
                 <td th:text="${tempPart.inv}">Part Inventory</td>
                 <td>
-                    <form th:action="@{/remove-part(part-id=${tempPart.id}, product-id=${product.getId()})}" th:method="DELETE" class="d-inline">
+                    <form th:action="@{/remove-part(part-id=${tempPart.id}, product-id=${product.id})}" th:method="DELETE" class="d-inline">
                         <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                     </form>
                 </td>

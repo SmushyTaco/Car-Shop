@@ -17,8 +17,8 @@ public final class EnoughPartsValidatorImpl implements ConstraintValidator<Enoug
     public void initialize(final EnoughPartsValidator constraintAnnotation) { ConstraintValidator.super.initialize(constraintAnnotation); }
     @Override
     public boolean isValid(final Product product, final ConstraintValidatorContext constraintValidatorContext) {
-        if (productService == null || product.getId() == 0) return true;
-        final Product existingProduct = productService.findById(product.getId());
-        return productService.getParts(existingProduct.getId()).stream().noneMatch(part -> part.getMinInv() < (product.getInv() - existingProduct.getInv()));
+        if (productService == null || product.id == 0) return true;
+        final Product existingProduct = productService.findById(product.id);
+        return productService.getParts(existingProduct.id).stream().noneMatch(part -> part.minInv < (product.inv - existingProduct.inv));
     }
 }

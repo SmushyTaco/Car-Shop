@@ -7,8 +7,6 @@ spring-dependency-management = "1.1.7"
 spring-boot = "4.0.0"
 # Check this on https://plugins.gradle.org/plugin/io.freefair.aspectj.post-compile-weaving/
 aspectjPlugin = "9.1.0"
-# Check this on https://plugins.gradle.org/plugin/io.freefair.lombok/
-lombokPlugin = "9.1.0"
 # Check this on https://plugins.gradle.org/plugin/com.github.node-gradle.node/
 nodePlugin = "7.1.0"
 ##########################################################################
@@ -20,11 +18,11 @@ gradleJava = "25"
 ##########################################################################
 # Dependencies
 # Check this on https://www.npmjs.com/package/npm/
-npm = "11.6.3"
+npm = "11.6.4"
 # Check this on https://nodejs.org/en/
 nodejs = "24.11.1"
-# Check this on https://central.sonatype.com/artifact/org.projectlombok/lombok/
-lombok = "1.18.42"
+# Check this on https://central.sonatype.com/artifact/systems.manifold/manifold/
+manifold = "2025.1.27"
 # Check this on https://central.sonatype.com/artifact/org.aspectj/aspectjrt/
 aspectjrt = "1.9.25"
 # Check this on https://central.sonatype.com/artifact/com.smushytaco/embedded-postgres/
@@ -33,14 +31,23 @@ embeddedPostgres = "3.0.2"
 postgresql = "18.1.0"
 # Check this on https://central.sonatype.com/artifact/org.postgresql/postgresql/
 postgresqlDriver = "42.7.8"
+# Check this on https://central.sonatype.com/artifact/org.jetbrains/annotations/
+annotations = "26.0.2-1"
+# Check this on https://central.sonatype.com/artifact/org.checkerframework/checker-qual/
+checkerQual = "3.52.1"
 ##########################################################################
 
 [libraries]
-lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+manifold = { group = "systems.manifold", name = "manifold", version.ref = "manifold" }
+manifoldRt = { group = "systems.manifold", name = "manifold-rt", version.ref = "manifold" }
+manifoldProps = { group = "systems.manifold", name = "manifold-props", version.ref = "manifold" }
+manifoldPropsRt = { group = "systems.manifold", name = "manifold-props-rt", version.ref = "manifold" }
 aspectjrt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjrt" }
 embeddedPostgres = { group = "com.smushytaco", name = "embedded-postgres", version.ref = "embeddedPostgres" }
 postgresql = { group = "io.zonky.test.postgres", name = "embedded-postgres-binaries-bom", version.ref = "postgresql" }
 postgresqlDriver = { group = "org.postgresql", name = "postgresql", version.ref = "postgresqlDriver" }
+annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+checkerQual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkerQual" }
 spring-boot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
 spring-boot-starter-jooq = { group = "org.springframework.boot", name = "spring-boot-starter-jooq" }
 spring-boot-starter-thymeleaf = { group = "org.springframework.boot", name = "spring-boot-starter-thymeleaf" }
@@ -56,5 +63,4 @@ mockito = { group = "org.mockito", name = "mockito-core" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 aspectj = { id = "io.freefair.aspectj.post-compile-weaving", version.ref = "aspectjPlugin" }
-lombok = { id = "io.freefair.lombok", version.ref = "lombokPlugin" }
 node = { id = "com.github.node-gradle.node", version.ref = "nodePlugin" }

@@ -31,7 +31,7 @@ public final class InHousePartController {
     public String submitForm(@Valid final InHousePart inHousePart, final BindingResult bindingResult, final Model model) {
         model.addAttribute(IN_HOUSE_PART, inHousePart);
         if (bindingResult.hasErrors()) return IN_HOUSE_PART_FORM;
-        inHousePart.setProducts(inHousePartService.getProducts(inHousePart.getId()));
+        inHousePart.products = inHousePartService.getProducts(inHousePart.id);
         inHousePartService.save(inHousePart);
         return "redirect:main-screen";
     }

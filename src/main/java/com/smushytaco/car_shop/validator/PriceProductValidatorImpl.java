@@ -16,5 +16,5 @@ public final class PriceProductValidatorImpl implements ConstraintValidator<Pric
     @Override
     public void initialize(final PriceProductValidator constraintAnnotation) { ConstraintValidator.super.initialize(constraintAnnotation); }
     @Override
-    public boolean isValid(final Product product, final ConstraintValidatorContext constraintValidatorContext) { return productService == null || product.getId() == 0 || productService.productPriceIsValid(product, null); }
+    public boolean isValid(final Product product, final ConstraintValidatorContext constraintValidatorContext) { return productService == null || product.id == 0 || productService.productPriceIsValid(product, null); }
 }

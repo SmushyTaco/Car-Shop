@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <module name="car-shop.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.smushytaco.car_shop.DemoApplication" />
+    <option name="VM_PARAMETERS" value="--add-exports=java.base/jdk.internal.access=ALL-UNNAMED" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

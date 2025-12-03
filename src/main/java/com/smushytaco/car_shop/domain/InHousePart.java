@@ -2,13 +2,8 @@ package com.smushytaco.car_shop.domain;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import manifold.ext.props.rt.api.var;
 
-@Setter
-@Getter
-@NoArgsConstructor
 @Entity
 @DiscriminatorValue("1")
 public class InHousePart extends Part {
@@ -16,5 +11,7 @@ public class InHousePart extends Part {
         super(name, price, inv, minInv, maxInv);
         this.partId = partId;
     }
-    private int partId;
+    public InHousePart() {}
+    @var
+    int partId;
 }

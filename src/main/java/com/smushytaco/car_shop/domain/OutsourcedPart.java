@@ -3,13 +3,8 @@ package com.smushytaco.car_shop.domain;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import manifold.ext.props.rt.api.var;
 
-@Setter
-@Getter
-@NoArgsConstructor
 @Entity
 @DiscriminatorValue("2")
 public class OutsourcedPart extends Part {
@@ -17,6 +12,8 @@ public class OutsourcedPart extends Part {
         super(name, price, inv, minInv, maxInv);
         this.companyName = companyName;
     }
+    public OutsourcedPart() {}
     @NotBlank(message = "Company Name cannot be blank.")
-    private String companyName;
+    @var
+    String companyName;
 }

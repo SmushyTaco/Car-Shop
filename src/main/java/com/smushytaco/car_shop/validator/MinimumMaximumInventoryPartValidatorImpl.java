@@ -10,5 +10,5 @@ public final class MinimumMaximumInventoryPartValidatorImpl implements Constrain
     @Override
     public void initialize(final MinimumMaximumInventoryPartValidator constraintAnnotation) { ConstraintValidator.super.initialize(constraintAnnotation); }
     @Override
-    public boolean isValid(final Part part, final ConstraintValidatorContext constraintValidatorContext) { return part.getMaxInv() > part.getMinInv(); }
+    public boolean isValid(final Part part, final ConstraintValidatorContext constraintValidatorContext) { return part.maxInv > part.minInv; }
 }

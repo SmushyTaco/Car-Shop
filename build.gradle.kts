@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
     alias(libs.plugins.aspectj)
-    alias(libs.plugins.lombok)
     alias(libs.plugins.node)
 }
 val projectName = providers.gradleProperty("name")
@@ -27,9 +26,16 @@ dependencies {
     implementation(enforcedPlatform(libs.postgresql))
     implementation(libs.postgresqlDriver)
     implementation(libs.aspectjrt)
+    implementation(libs.manifoldRt)
+    implementation(libs.manifoldPropsRt)
+    implementation(libs.checkerQual)
     testImplementation(libs.spring.boot.starter.test)
     developmentOnly(libs.spring.boot.devtools)
-    annotationProcessor(libs.lombok)
+    compileOnly(libs.annotations)
+    annotationProcessor(libs.manifold)
+    annotationProcessor(libs.manifoldProps)
+    testAnnotationProcessor(libs.manifold)
+    testAnnotationProcessor(libs.manifoldProps)
     mockitoAgent(libs.mockito) { isTransitive = false }
 }
 configurations.configureEach {
@@ -62,6 +68,8 @@ tasks {
     withType<JavaCompile>().configureEach {
         dependsOn(compileTypeScript)
         options.encoding = "UTF-8"
+        options.compilerArgs.add("-Xplugin:Manifold")
+        options.forkOptions.jvmArgs?.add("--add-exports=java.base/jdk.internal.access=ALL-UNNAMED")
         sourceCompatibility = javaVersion.get().toString()
         targetCompatibility = javaVersion.get().toString()
         if (javaVersion.get() > 8) options.release = javaVersion
@@ -70,12 +78,16 @@ tasks {
         languageVersion = libs.versions.gradleJava.map { JavaLanguageVersion.of(it.toInt()) }
         vendor = JvmVendorSpec.ADOPTIUM
     }
-    withType<JavaExec>().configureEach { defaultCharacterEncoding = "UTF-8" }
+    withType<JavaExec>().configureEach {
+        defaultCharacterEncoding = "UTF-8"
+        jvmArgs("--add-exports=java.base/jdk.internal.access=ALL-UNNAMED")
+    }
     withType<Javadoc>().configureEach { options.encoding = "UTF-8" }
     withType<Test>().configureEach {
         val provider = objects.newInstance(MockitoAgentArgs::class.java).apply { agentFiles.from(mockitoAgent) }
         jvmArgumentProviders.add(provider)
         defaultCharacterEncoding = "UTF-8"
         useJUnitPlatform()
+        jvmArgs("--add-exports=java.base/jdk.internal.access=ALL-UNNAMED")
     }
 }

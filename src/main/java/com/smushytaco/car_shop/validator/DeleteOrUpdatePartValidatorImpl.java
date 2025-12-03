@@ -16,5 +16,5 @@ public final class DeleteOrUpdatePartValidatorImpl implements ConstraintValidato
     @Override
     public void initialize(final DeleteOrUpdatePartValidator constraintAnnotation) { ConstraintValidator.super.initialize(constraintAnnotation); }
     @Override
-    public boolean isValid(final Part part, final ConstraintValidatorContext constraintValidatorContext) { return partService == null || partService.getProducts(part.getId()).isEmpty(); }
+    public boolean isValid(final Part part, final ConstraintValidatorContext constraintValidatorContext) { return partService == null || partService.getProducts(part.id).isEmpty(); }
 }

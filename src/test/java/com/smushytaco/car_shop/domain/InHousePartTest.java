@@ -12,7 +12,7 @@ final class InHousePartTest {
     @Test
     void partId() {
         final int partId = 4;
-        inHousePart.setPartId(partId);
-        assertEquals(partId, inHousePart.getPartId());
+        inHousePart.partId = partId;
+        assertEquals(partId, inHousePart.partId);
     }
 }

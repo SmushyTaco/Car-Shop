@@ -15,26 +15,26 @@ final class ProductTest {
     @Test
     void id() {
         final long id = 4L;
-        product.setId(id);
-        assertEquals(id, product.getId());
+        product.id = id;
+        assertEquals(id, product.id);
     }
     @Test
     void name() {
         final String name = "test product";
-        product.setName(name);
-        assertEquals(name, product.getName());
+        product.name = name;
+        assertEquals(name, product.name);
     }
     @Test
     void price() {
         final double price = 1.0;
-        product.setPrice(price);
-        assertEquals(price, product.getPrice());
+        product.price = price;
+        assertEquals(price, product.price);
     }
     @Test
     void inv() {
         final int inv = 5;
-        product.setInv(inv);
-        assertEquals(inv, product.getInv());
+        product.inv = inv;
+        assertEquals(inv, product.inv);
     }
     @Test
     void parts() {
@@ -43,27 +43,29 @@ final class ProductTest {
         final Set<Part> parts = new HashSet<>();
         parts.add(outsourcedPart);
         parts.add(inHousePart);
-        product.setParts(parts);
-        assertEquals(parts, product.getParts());
+        product.parts = parts;
+        assertEquals(parts, product.parts);
     }
     @Test
     void testToString() {
         final String name = "test product";
-        product.setName(name);
+        product.name = name;
         assertEquals(name, product.toString());
     }
     @Test
     void testEquals() {
-        product.setId(1L);
+        final long id = 1L;
+        product.id = id;
         final Product productTwo = new Product();
-        productTwo.setId(1L);
+        productTwo.id = id;
         assertEquals(product, productTwo);
     }
     @Test
     void testHashCode() {
-        product.setId(1L);
+        final long id = 1L;
+        product.id = id;
         final Product productTwo = new Product();
-        productTwo.setId(1L);
+        productTwo.id = id;
         assertEquals(product.hashCode(), productTwo.hashCode());
     }
 }

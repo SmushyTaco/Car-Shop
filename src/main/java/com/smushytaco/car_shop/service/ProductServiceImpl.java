@@ -16,7 +16,7 @@ import java.util.Set;
 public final class ProductServiceImpl implements ProductService {
     private Set<Part> getPartsInternal(final long id) {
         final Optional<Product> product = productRepository.findByIdWithParts(id);
-        return product.map(Product::getParts).orElse(Collections.emptySet());
+        return product.map(theProduct -> theProduct.parts).orElse(Collections.emptySet());
     }
     private Product findByIdInternal(final long id) { return productRepository.findById(id).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + id)); }
     private static final String DID_NOT_FIND_PRODUCT = "Did not find product id - ";
@@ -52,8 +52,8 @@ public final class ProductServiceImpl implements ProductService {
     public void associatePartToProduct(final long productId, final long partId) {
         final Product product = productRepository.findByIdWithParts(productId).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + productId));
         final Part part = partRepository.findByIdWithProducts(partId).orElseThrow(() -> new RuntimeException("Did not find part id - " + partId));
-        product.getParts().add(part);
-        part.getProducts().add(product);
+        product.parts.add(part);
+        part.products.add(product);
         productRepository.save(product);
     }
     @Override
@@ -61,15 +61,15 @@ public final class ProductServiceImpl implements ProductService {
     public void removePartFromProduct(final long productId, final long partId) {
         final Product product = productRepository.findByIdWithParts(productId).orElseThrow(() -> new RuntimeException(DID_NOT_FIND_PRODUCT + productId));
         final Part part = partRepository.findByIdWithProducts(partId).orElseThrow(() -> new RuntimeException("Did not find part id - " + partId));
-        product.getParts().remove(part);
-        part.getProducts().remove(product);
+        product.parts.remove(part);
+        part.products.remove(product);
         productRepository.save(product);
         partRepository.save(part);
     }
     @Override
     @Transactional(readOnly = true)
     public boolean productPriceIsValid(final Product product, final Part extraPart) {
-        if (extraPart == null) return product.getPrice() >= getPartsInternal(findByIdInternal(product.getId()).getId()).stream().mapToDouble(Part::getPrice).sum();
-        return product.getPrice() >= getPartsInternal(findByIdInternal(product.getId()).getId()).stream().mapToDouble(Part::getPrice).sum() + extraPart.getPrice();
+        if (extraPart == null) return product.price >= getPartsInternal(findByIdInternal(product.id).id).stream().mapToDouble(part -> part.price).sum();
+        return product.price >= getPartsInternal(findByIdInternal(product.id).id).stream().mapToDouble(part -> part.price).sum() + extraPart.price;
     }
 }

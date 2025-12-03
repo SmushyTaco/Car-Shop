@@ -31,6 +31,6 @@ public final class PartServiceImpl implements PartService {
     @Transactional(readOnly = true)
     public Set<Product> getProducts(final long id) {
         final Optional<Part> part = partRepository.findByIdWithProducts(id);
-        return part.map(Part::getProducts).orElse(Collections.emptySet());
+        return part.map(thePart -> thePart.products).orElse(Collections.emptySet());
     }
 }

@@ -5,16 +5,13 @@ import com.smushytaco.car_shop.validator.PriceProductValidator;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import manifold.ext.props.rt.api.var;
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "products")
 @PriceProductValidator
@@ -24,18 +21,23 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private long id;
+    @var
+    long id;
     @NotBlank(message = "Name cannot be blank.")
     @Column(nullable = false)
-    private String name;
+    @var
+    String name;
     @Min(value = 0, message = "Price value must be positive.")
     @Column(nullable = false)
-    private double price;
+    @var
+    double price;
     @Min(value = 0, message = "Inventory value must be positive.")
     @Column(nullable = false)
-    private int inv;
+    @var
+    int inv;
     @ManyToMany(mappedBy = "products", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    private Set<Part> parts = new HashSet<>();
+    @var
+    Set<Part> parts = new HashSet<>();
     public Product() {}
     public Product(final String name, final double price, final int inv) {
         this.name = name;

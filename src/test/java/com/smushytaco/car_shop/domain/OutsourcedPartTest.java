@@ -12,7 +12,7 @@ final class OutsourcedPartTest {
     @Test
     void companyName() {
         final String companyName = "test company name";
-        outsourcedPart.setCompanyName(companyName);
-        assertEquals(companyName, outsourcedPart.getCompanyName());
+        outsourcedPart.companyName = companyName;
+        assertEquals(companyName, outsourcedPart.companyName);
     }
 }

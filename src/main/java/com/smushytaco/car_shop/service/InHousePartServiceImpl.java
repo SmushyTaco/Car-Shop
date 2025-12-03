@@ -34,6 +34,6 @@ public final class InHousePartServiceImpl implements InHousePartService {
     @Transactional(readOnly = true)
     public Set<Product> getProducts(final long id) {
         final Optional<InHousePart> inHousePart = inHousePartRepository.findByIdWithProducts(id);
-        return inHousePart.map(InHousePart::getProducts).orElse(Collections.emptySet());
+        return inHousePart.map(part -> part.products).orElse(Collections.emptySet());
     }
 }

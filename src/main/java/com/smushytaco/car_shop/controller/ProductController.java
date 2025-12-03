@@ -5,7 +5,6 @@ import com.smushytaco.car_shop.domain.Product;
 import com.smushytaco.car_shop.service.PartService;
 import com.smushytaco.car_shop.service.ProductService;
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@Slf4j
 @Controller
 public final class ProductController {
     private final PartService partService;
@@ -27,10 +25,10 @@ public final class ProductController {
         if (addAttribute) model.addAttribute("product", product);
         if (!isUpdate) return "new-product-form";
         final List<Part> availableParts = new ArrayList<>();
-        final Set<Part> associatedParts = productService.getParts(product.getId());
+        final Set<Part> associatedParts = productService.getParts(product.id);
         for (final Part part : partService.findAll()) if (!associatedParts.contains(part)) availableParts.add(part);
         final Map<Long, Boolean> partPriceValidity = new HashMap<>();
-        for (final Part part : availableParts) partPriceValidity.put(part.getId(), productService.productPriceIsValid(product, part));
+        for (final Part part : availableParts) partPriceValidity.put(part.id, productService.productPriceIsValid(product, part));
         model.addAttribute("partPriceValidity", partPriceValidity);
         model.addAttribute("availableParts", availableParts);
         model.addAttribute("associatedParts", associatedParts);
@@ -41,7 +39,7 @@ public final class ProductController {
     @PostMapping("/add-product")
     public String submitFormForNewProduct(@Valid final Product product, final BindingResult bindingResult, final Model model) {
         if (bindingResult.hasErrors()) return prepareProductForm(model, product, true, false);
-        product.setInv(0);
+        product.inv = 0;
         productService.save(product);
         return REDIRECT_MAIN_SCREEN;
     }
@@ -53,23 +51,23 @@ public final class ProductController {
     @PatchMapping("/update-product")
     public String submitFormForUpdatingProduct(@Valid final Product product, final BindingResult bindingResult, final Model model) {
         if (bindingResult.hasErrors()) return prepareProductForm(model, product, false, true);
-        final Product existingProduct = productService.findById(product.getId());
-        existingProduct.setName(product.getName());
-        existingProduct.setPrice(product.getPrice());
-        if (product.getInv() > existingProduct.getInv()) {
-            final Set<Part> parts = productService.getParts(existingProduct.getId());
+        final Product existingProduct = productService.findById(product.id);
+        existingProduct.name = product.name;
+        existingProduct.price = product.price;
+        if (product.inv > existingProduct.inv) {
+            final Set<Part> parts = productService.getParts(existingProduct.id);
             for (final Part part : parts) {
-                part.setInv(part.getInv() - (product.getInv() - existingProduct.getInv()));
+                part.inv -= product.inv - existingProduct.inv;
                 partService.save(part);
             }
         }
-        existingProduct.setInv(product.getInv());
+        existingProduct.inv = product.inv;
         productService.save(existingProduct);
         return REDIRECT_MAIN_SCREEN;
     }
     @DeleteMapping("/delete-product")
     public String deleteProduct(@RequestParam("product-id") final long id) {
-        productService.getParts(id).stream().map(Part::getId).toList().forEach(partId -> productService.removePartFromProduct(id, partId));
+        productService.getParts(id).stream().map(part -> part.id).toList().forEach(partId -> productService.removePartFromProduct(id, partId));
         productService.deleteById(id);
         return REDIRECT_MAIN_SCREEN;
     }
@@ -86,7 +84,7 @@ public final class ProductController {
     @PatchMapping("/buy-product")
     public String buyProduct(@RequestParam("product-id") final long id) {
         final Product product = productService.findById(id);
-        product.setInv(product.getInv() - 1);
+        product.inv--;
         productService.save(product);
         return REDIRECT_MAIN_SCREEN;
     }
