@@ -18,7 +18,7 @@ gradleJava = "25"
 ##########################################################################
 # Dependencies
 # Check this on https://www.npmjs.com/package/npm/
-npm = "11.6.4"
+npm = "11.7.0"
 # Check this on https://nodejs.org/en/
 nodejs = "24.11.1"
 # Check this on https://central.sonatype.com/artifact/systems.manifold/manifold/
