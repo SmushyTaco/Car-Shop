@@ -6,15 +6,15 @@ plugins {
     alias(libs.plugins.aspectj)
     alias(libs.plugins.node)
 }
-val projectName = providers.gradleProperty("name")
-val projectGroup = providers.gradleProperty("group")
-val projectVersion = providers.gradleProperty("version")
-val javaVersion = libs.versions.java.map { it.toInt() }
+val projectName: Provider<String> = providers.gradleProperty("name")
+val projectGroup: Provider<String> = providers.gradleProperty("group")
+val projectVersion: Provider<String> = providers.gradleProperty("version")
+val javaVersion: Provider<Int> = libs.versions.java.map { it.toInt() }
 base.archivesName = projectName
 group = projectGroup.get()
 version = projectVersion.get()
 repositories { mavenCentral() }
-val mockitoAgent by configurations.creating
+val mockitoAgent: Configuration by configurations.creating
 dependencies {
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.jooq)
