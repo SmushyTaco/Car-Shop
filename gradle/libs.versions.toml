@@ -4,9 +4,9 @@
 # Check this on https://plugins.gradle.org/plugin/io.spring.dependency-management/
 spring-dependency-management = "1.1.7"
 # Check this on https://plugins.gradle.org/plugin/org.springframework.boot/
-spring-boot = "4.0.1"
+spring-boot = "4.0.2"
 # Check this on https://plugins.gradle.org/plugin/io.freefair.aspectj.post-compile-weaving/
-aspectjPlugin = "9.1.0"
+aspectjPlugin = "9.2.0"
 # Check this on https://plugins.gradle.org/plugin/com.github.node-gradle.node/
 nodePlugin = "7.1.0"
 ##########################################################################
@@ -18,23 +18,23 @@ gradleJava = "25"
 ##########################################################################
 # Dependencies
 # Check this on https://www.npmjs.com/package/npm/
-npm = "11.7.0"
+npm = "11.8.0"
 # Check this on https://nodejs.org/en/
-nodejs = "24.12.0"
+nodejs = "24.13.0"
 # Check this on https://central.sonatype.com/artifact/systems.manifold/manifold/
-manifold = "2025.1.29"
+manifold = "2026.1.1"
 # Check this on https://central.sonatype.com/artifact/org.aspectj/aspectjrt/
 aspectjrt = "1.9.25.1"
 # Check this on https://central.sonatype.com/artifact/com.smushytaco/embedded-postgres/
-embeddedPostgres = "3.0.2"
+embeddedPostgres = "3.0.3"
 # Check this on https://central.sonatype.com/artifact/io.zonky.test.postgres/embedded-postgres-binaries-bom/
 postgresql = "18.1.0"
 # Check this on https://central.sonatype.com/artifact/org.postgresql/postgresql/
-postgresqlDriver = "42.7.8"
+postgresqlDriver = "42.7.9"
 # Check this on https://central.sonatype.com/artifact/org.jetbrains/annotations/
 annotations = "26.0.2-1"
 # Check this on https://central.sonatype.com/artifact/org.checkerframework/checker-qual/
-checkerQual = "3.52.1"
+checkerQual = "3.53.0"
 ##########################################################################
 
 [libraries]
