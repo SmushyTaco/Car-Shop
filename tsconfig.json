@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "es6",
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
     "alwaysStrict": true,
-    "moduleResolution": "node",
     "outDir": "src/main/resources/static/js",
     "rootDir": "src/main/resources/static/ts",
     "forceConsistentCasingInFileNames": true

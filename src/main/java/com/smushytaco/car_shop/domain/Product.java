@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import manifold.ext.props.rt.api.var;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,7 +16,7 @@ import java.util.Set;
 @PriceProductValidator
 @EnoughPartsValidator
 @SuppressWarnings("JpaDataSourceORMInspection")
-public class Product implements Serializable {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)

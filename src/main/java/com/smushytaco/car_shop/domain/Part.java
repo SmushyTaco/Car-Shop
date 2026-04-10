@@ -9,7 +9,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import manifold.ext.props.rt.api.var;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -23,7 +22,7 @@ import java.util.Set;
 @DiscriminatorColumn(name = "part_type", discriminatorType = DiscriminatorType.INTEGER)
 @Table(name = "parts")
 @SuppressWarnings("JpaDataSourceORMInspection")
-public abstract class Part implements Serializable {
+public abstract class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
