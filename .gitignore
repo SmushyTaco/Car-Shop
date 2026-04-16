@@ -38,6 +38,7 @@ classes/
 
 ### Database ###
 data/
+.embedded-postgres-owned-*
 
 ### Log ###
 *.log

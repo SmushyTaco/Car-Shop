@@ -20,13 +20,13 @@ gradleJava = "25"
 # Check this on https://www.npmjs.com/package/npm/
 npm = "11.12.1"
 # Check this on https://nodejs.org/en/
-nodejs = "24.14.1"
+nodejs = "24.15.0"
 # Check this on https://central.sonatype.com/artifact/systems.manifold/manifold/
 manifold = "2026.1.6"
 # Check this on https://central.sonatype.com/artifact/org.aspectj/aspectjrt/
 aspectjrt = "1.9.25.1"
 # Check this on https://central.sonatype.com/artifact/com.smushytaco/embedded-postgres/
-embeddedPostgres = "3.1.0"
+embeddedPostgres = "4.0.0"
 # Check this on https://central.sonatype.com/artifact/io.zonky.test.postgres/embedded-postgres-binaries-bom/
 postgresql = "18.3.0"
 # Check this on https://central.sonatype.com/artifact/org.postgresql/postgresql/
