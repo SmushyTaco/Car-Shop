@@ -14,8 +14,8 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@Configuration
-class DatabaseConfiguration {
+@Configuration(proxyBeanMethods = false)
+public final class DatabaseConfiguration {
     @Bean(destroyMethod = "close")
     public EmbeddedPostgres embeddedPostgres(
             @Value("${app.postgres.port:0}") final int port,

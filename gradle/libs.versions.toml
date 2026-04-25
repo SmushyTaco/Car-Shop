@@ -4,9 +4,9 @@
 # Check this on https://plugins.gradle.org/plugin/io.spring.dependency-management/
 spring-dependency-management = "1.1.7"
 # Check this on https://plugins.gradle.org/plugin/org.springframework.boot/
-spring-boot = "4.0.5"
+spring-boot = "4.0.6"
 # Check this on https://plugins.gradle.org/plugin/io.freefair.aspectj.post-compile-weaving/
-aspectjPlugin = "9.2.0"
+aspectjPlugin = "9.4.0"
 # Check this on https://plugins.gradle.org/plugin/com.github.node-gradle.node/
 nodePlugin = "7.1.0"
 ##########################################################################
@@ -18,7 +18,7 @@ gradleJava = "25"
 ##########################################################################
 # Dependencies
 # Check this on https://www.npmjs.com/package/npm/
-npm = "11.12.1"
+npm = "11.13.0"
 # Check this on https://nodejs.org/en/
 nodejs = "24.15.0"
 # Check this on https://central.sonatype.com/artifact/systems.manifold/manifold/
@@ -57,6 +57,7 @@ spring-boot-starter-log4j2 = { group = "org.springframework.boot", name = "sprin
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
 spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
 spring-boot-starter-logging = { group = "org.springframework.boot", name = "spring-boot-starter-logging" }
+spring-aspects = { group = "org.springframework", name = "spring-aspects" }
 mockito = { group = "org.mockito", name = "mockito-core" }
 
 [plugins]

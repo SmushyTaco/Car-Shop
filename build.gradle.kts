@@ -29,6 +29,8 @@ dependencies {
     implementation(libs.manifoldRt)
     implementation(libs.manifoldPropsRt)
     implementation(libs.checkerQual)
+    implementation(libs.spring.aspects)
+    aspect(libs.spring.aspects)
     testImplementation(libs.spring.boot.starter.test)
     developmentOnly(libs.spring.boot.devtools)
     compileOnly(libs.annotations)
@@ -62,6 +64,7 @@ java {
 }
 tasks {
     val compileTypeScript by registering(NpmTask::class) {
+        description = "Compile TypeScript"
         dependsOn(npmInstall)
         args = listOf("run", "tsc")
     }
