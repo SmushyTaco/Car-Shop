@@ -44,14 +44,14 @@ public class Product {
         this.inv = inv;
     }
     @Override
-    public final boolean equals(final Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final Product product = (Product) o;
         return id == product.id;
     }
     @Override
-    public final int hashCode() { return Objects.hash(id); }
+    public int hashCode() { return Objects.hash(id); }
     @Override
-    public final String toString() { return name; }
+    public String toString() { return name; }
 }

@@ -14,7 +14,7 @@ base.archivesName = projectName
 group = projectGroup.get()
 version = projectVersion.get()
 repositories { mavenCentral() }
-val mockitoAgent: Configuration by configurations.creating
+val mockitoAgent: Configuration = configurations.create("mockitoAgent")
 dependencies {
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.jooq)
@@ -63,7 +63,7 @@ java {
     targetCompatibility = JavaVersion.toVersion(javaVersion.get())
 }
 tasks {
-    val compileTypeScript by registering(NpmTask::class) {
+    val compileTypeScript = register<NpmTask>("compileTypeScript") {
         description = "Compile TypeScript"
         dependsOn(npmInstall)
         args = listOf("run", "tsc")
